@@ -30,6 +30,10 @@ class Weather extends Schema {
       }]
     })
   }
+
+  static * findByLocaleId (localeId) {
+    return this.find({'locale.id': localeId}).lean()
+  }
 }
 
 module.exports = mongoose.model('weather', wrapSchema(Weather))

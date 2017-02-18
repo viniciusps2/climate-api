@@ -12,7 +12,7 @@ let app = koa()
 }))
 
 .use(require('./api/home/routes').routes())
-
 .use(require('./api/weather/routes').routes())
+.use(require('./api/locales/routes').routes())
 
 module.exports = app

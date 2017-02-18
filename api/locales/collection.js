@@ -12,6 +12,10 @@ class Locale extends Schema {
       longitude: Number
     })
   }
+
+  static * search (name) {
+    return this.find({name: new RegExp(name, 'i')}).lean()
+  }
 }
 
 module.exports = mongoose.model('locale', wrapSchema(Locale))
