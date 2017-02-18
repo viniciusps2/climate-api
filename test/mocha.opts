@@ -1,0 +1,6 @@
+-r co-mocha
+-r ./lib/mongodb
+--reporter spec
+--ui bdd
+--recursive
+--timeout 8000
