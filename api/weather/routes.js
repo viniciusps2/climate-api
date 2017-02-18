@@ -8,6 +8,6 @@ module.exports = Router({prefix: '/weather'})
   this.body = yield Weather.findByLocaleId(localeId)
 })
 
-.get('/locales', function* () {
-  this.body = yield Weather.find().lean()
+.get('/', function* () {
+  this.body = yield Weather.getMainWeathers()
 })

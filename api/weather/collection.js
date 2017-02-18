@@ -34,6 +34,15 @@ class Weather extends Schema {
   static * findByLocaleId (localeId) {
     return this.find({'locale.id': localeId}).lean()
   }
+
+  static * getMainWeathers () {
+    const weathers = yield this.find().limit(10).sort({'locale.name': 1}).lean()
+    const weatherLimited = weathers.map((weatherItem) => {
+      weatherItem.weather.splice(4)
+      return weatherItem
+    })
+    return weatherLimited
+  }
 }
 
 module.exports = mongoose.model('weather', wrapSchema(Weather))
