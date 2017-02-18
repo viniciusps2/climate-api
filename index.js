@@ -1,5 +1,5 @@
 require('./lib/mongodb')
-require('./scripts/seed-db')()
+require('./scripts/seed-db')().catch(console.log)
 
 const project = require('./package')
 const app = require('./app')

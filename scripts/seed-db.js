@@ -13,6 +13,6 @@ module.exports = wrap(function * () {
   ]
   yield [
     Weather.create(weatherData),
-    Locales.create(localesData)
+    Locales.saveMany(localesData)
   ]
 })
