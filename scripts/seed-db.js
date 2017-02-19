@@ -15,4 +15,5 @@ module.exports = wrap(function * () {
     Weather.create(weatherData),
     Locales.saveMany(localesData)
   ]
+  console.log('Finish seeding.')
 })
