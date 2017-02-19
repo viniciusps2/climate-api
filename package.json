@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test npm run lint && npm run mocha",
+    "start": "node index",
     "mocha": "NODE_ENV=test ./node_modules/.bin/mocha test/**/*.spec.js",
     "fix-lint": "./node_modules/.bin/standard --fix",
-    "lint": "./node_modules/.bin/standard --verbose | snazzy"
+    "lint": "./node_modules/.bin/standard --verbose | snazzy",
+    "coverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover -x 'lib/** config/**' --print both ./node_modules/mocha/bin/_mocha -- test --recursive",
+    "posttest": "./node_modules/.bin/istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
+    "test": "NODE_ENV=test npm run lint && npm run coverage"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +33,8 @@
     "pre-commit": "1.1.3",
     "sinon": "1.17.5",
     "snazzy": "5.0.0",
+    "eslint": "3.5.0",
+    "istanbul": "0.4.5",
     "standard": "8.0.0",
     "supertest": "^3.0.0"
   },
