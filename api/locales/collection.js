@@ -12,6 +12,7 @@ class Locale extends Schema {
       latitude: Number,
       longitude: Number
     })
+    this.defineIndex()
   }
 
   static * save (locale) {
@@ -29,6 +30,12 @@ class Locale extends Schema {
       .find({nameToSearch})
       .select({id: 1, name: 1, state: 1})
       .lean()
+  }
+
+  defineIndex () {
+    this.index({
+      'nameToSearch': 1
+    }, {name: 'nameToSearchIndex'})
   }
 }
 

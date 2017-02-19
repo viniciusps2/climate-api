@@ -29,6 +29,7 @@ class Weather extends Schema {
         }
       }]
     })
+    this.defineIndex()
   }
 
   static * findByLocaleId (localeId) {
@@ -46,6 +47,15 @@ class Weather extends Schema {
       .sort({'locale.name': 1})
       .lean()
     return weathers
+  }
+
+  defineIndex () {
+    this.index({
+      'locale.id': 1
+    }, {name: 'findByLocaleIdIndex'})
+    this.index({
+      'name': 1
+    }, {name: 'sortLocaleNameIndex'})
   }
 }
 
