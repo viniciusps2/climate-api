@@ -20,9 +20,8 @@ describe('weather collection spec', () => {
     it('should return weathers for one locale', function * () {
       yield Weather.create(getFixture(), getFixture(2, 'SJC'))
       const res = yield Weather.findByLocaleId(2)
-      expect(res.length).to.be.eq(1)
-      expect(res[0].locale.id).to.be.eq(2)
-      expect(res[0].weather.length).to.be.eq(6)
+      expect(res.locale.name).to.be.eq('SJC')
+      expect(res.weather.length).to.be.eq(6)
     })
   })
 

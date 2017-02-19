@@ -27,7 +27,7 @@ class Locale extends Schema {
     const nameToSearch = new RegExp('^' + stripAccents(name).toLowerCase())
     return this
       .find({nameToSearch})
-      .select({id: 1, name: 1})
+      .select({id: 1, name: 1, state: 1})
       .lean()
   }
 }
