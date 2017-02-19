@@ -25,14 +25,17 @@ class Locale extends Schema {
 
   static * search (name) {
     const nameToSearch = new RegExp('^' + stripAccents(name).toLowerCase())
-    return this.find({nameToSearch}).lean()
+    return this
+      .find({nameToSearch})
+      .select({id: 1, name: 1})
+      .lean()
   }
 }
 
 function stripAccents (str) {
   const accents = /[àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ]/g
   const without = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY'
-  return str.replace(accents, function (match) {
+  return (str || '').replace(accents, function (match) {
     return without.substr(accents.source.indexOf(match) - 1, 1)
   })
 }
